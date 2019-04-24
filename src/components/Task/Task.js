@@ -22,7 +22,7 @@ const Task = props => {
                         <input
                             type="checkbox"
                             value={task.status}
-                            onChange={() => props.statusChange(task.id)}
+                            onChange={e => props.statusChange(e, task.id)}
                             checked={Boolean(task.status)}
                         />
                     </div>

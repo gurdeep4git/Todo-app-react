@@ -11,14 +11,18 @@ class AddTodo extends Component {
         status: null
     };
 
+    formSubmitHandler = e => {
+        e.preventDefault();
+    };
+
     handleChange = e => {
         const item = new ItemModel();
-        item.id = generateId();
+        item.Id = generateId();
         item.Status = 0;
         item.Title = e.target.value;
 
         this.setState({
-            id: item.id,
+            id: item.Id,
             title: item.Title,
             status: item.Status
         });
@@ -37,12 +41,15 @@ class AddTodo extends Component {
         return (
             <Row>
                 <Col md={{ span: 4, offset: 4 }}>
-                    <Form className="border p-3">
+                    <Form
+                        onSubmit={this.formSubmitHandler}
+                        className="border p-3"
+                    >
                         <Form.Group controlId="exampleForm.ControlInput1">
-                            <Form.Label>Title</Form.Label>
+                            <Form.Label>Add New Task</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder="title"
+                                placeholder="task"
                                 onChange={this.handleChange}
                                 value={this.state.title}
                             />

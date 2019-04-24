@@ -1,5 +1,5 @@
 export class ItemModel {
-    id;
+    Id;
     Title;
     Status;
 }

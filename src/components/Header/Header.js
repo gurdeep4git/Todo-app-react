@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-const Header = props => {
+const Header = () => {
     return (
         <header className="p-3 bg-primary text-white">
             <Container fluid>
