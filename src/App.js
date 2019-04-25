@@ -17,22 +17,21 @@ class App extends Component {
 
     state = {
         tasks: [
-            { id: 1, title: "new", status: 1 },
-            { id: 2, title: "new1", status: 0 },
-            { id: 3, title: "new2", status: 0 }
+            // { id: 1, title: "new", status: 1 },
+            // { id: 2, title: "new1", status: 0 },
+            // { id: 3, title: "new2", status: 0 }
         ],
         remainingTasksCount: 0,
         totalTaskCount: 0
     };
 
     loadTasks = () => {
-        //     if (localStorage.getItem("lsState") === null) {
-        //         this.setState({ tasks: [] });
-        //     } else {
-        //         const currState = JSON.parse(localStorage.getItem("lsState"));
-        //         this.setState({ tasks: currState.tasks });
-        //     }
-
+        // if (localStorage.getItem("lsState") === null) {
+        //     this.setState({ tasks: [] });
+        // } else {
+        //     const currState = JSON.parse(localStorage.getItem("lsState"));
+        //     this.setState({ tasks: currState.tasks });
+        // }
         this.updateRemainingTasksCount();
     };
 
@@ -53,9 +52,11 @@ class App extends Component {
     };
 
     addTaskHandler = task => {
-        let Updatedtasks = [...this.state.tasks];
-        Updatedtasks.push(task);
-        this.setState({ tasks: Updatedtasks });
+        // let Updatedtasks = [...this.state.tasks];
+        // Updatedtasks.push(task);
+        this.state.tasks.push(task);
+        this.setState({ tasks: this.state.tasks});
+        console.log(this.state);
         this.updateRemainingTasksCount();
         //localStorage.setItem("lsState", JSON.stringify(this.state));
     };
@@ -79,16 +80,18 @@ class App extends Component {
                 <Container>
                     <AddTodo addTodo={this.addTaskHandler} />
                     <hr />
-                    <div>
+                    {this.state.tasks.length ? (
+                        <div>
                         Tasks
                         <strong className="mx-1">
-                            {this.state.remainingTasksCount}
+                           {this.state.remainingTasksCount}
                         </strong>
                         left from
                         <strong className="ml-1">
                             {this.state.totalTaskCount}
                         </strong>
-                    </div>
+                   </div>
+                    ): null}
                     {this.state.tasks.length ? (
                         <ListTodo
                             tasks={this.state.tasks}
