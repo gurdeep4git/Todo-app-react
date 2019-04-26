@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import generateId from "../../Utilities/generateId";
 import { ItemModel } from "../../models/ItemModel/ItemModel";
 
 class AddTodo extends Component {
-
-    validationMsg = "Plese add a task"
+    validationMsg = "Plese add a task";
 
     state = {
         id: null,
         title: "",
-        status: null,
+        status: null
         //showValidation : false
     };
 
@@ -36,38 +35,36 @@ class AddTodo extends Component {
     };
 
     handleButtonClick = () => {
-        if(this.validateState(this.state)){
+        if (this.validateState(this.state)) {
             this.props.addTodo(this.state);
             this.setState({
                 id: null,
                 title: "",
-                status: null,
+                status: null
                 //showValidation:false
             });
-        }
-        else{
+        } else {
             //this.setState({showValidation:true})
             toast.error(this.validationMsg, { autoClose: 3000 });
         }
     };
 
-    validateState = (state) => {
+    validateState = state => {
         let validateStatus = true;
-        if(state.title === "" || state.title === undefined){
+        if (state.title === "" || state.title === undefined) {
             validateStatus = false;
         }
         return validateStatus;
-    }
+    };
 
     render() {
         return (
             <Row>
                 <Col md={{ span: 4, offset: 4 }}>
-                    
                     {/* <Alert show={this.state.showValidation} variant="danger">
                         This cant be empty
                     </Alert> */}
-                    
+
                     <Form
                         onSubmit={this.formSubmitHandler}
                         className="border p-3"
@@ -80,7 +77,6 @@ class AddTodo extends Component {
                                 onChange={this.handleChange}
                                 value={this.state.title}
                             />
-                            
                         </Form.Group>
 
                         <Button
