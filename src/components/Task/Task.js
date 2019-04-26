@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Button } from "react-bootstrap";
 
 const Task = props => {
     const tasks = props.tasks.length ? (
@@ -8,23 +8,28 @@ const Task = props => {
                 <ListGroup.Item
                     className={
                         "justify-content-between d-flex " +
-                        (Boolean(task.status) ? "bg-success" : "")
+                        (Boolean(task.status) ? "bg-success text-white" : "")
                     }
                     key={task.id}
                 >
-                    <div
-                        className="d-inline-block"
-                        onClick={() => props.deleteTask(task.id)}
-                    >
-                        {task.title}
-                    </div>
                     <div className="d-inline-block">
-                        <input
+                    <input
                             type="checkbox"
                             value={task.status}
+                            className="align-middle mr-2"
                             onChange={e => props.statusChange(e, task.id)}
                             checked={Boolean(task.status)}
                         />
+                        {task.title}
+                    </div>
+                    <div className="d-inline-block">
+                        <Button 
+                            className="p-0 small"
+                            variant="link"
+                            size="sm"
+                            onClick={() => props.deleteTask(task.id)}
+                        >
+                        Delete</Button>
                     </div>
                 </ListGroup.Item>
             );
